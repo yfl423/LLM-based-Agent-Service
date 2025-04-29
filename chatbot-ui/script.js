@@ -1,0 +1,42 @@
+function sendMessage() {
+    const input = document.getElementById("user_input");
+    const chatBox = document.getElementById("chat_box");
+    const message = input.value.trim();
+  
+    if (message === "") return;
+  
+    // User message
+    const userDiv = document.createElement("div");
+    userDiv.className = "message user_message";
+    userDiv.textContent = message;
+    chatBox.appendChild(userDiv);
+  
+    // AI response 
+    const AIDiv = document.createElement("div");
+    AIDiv.className = "message AI_message";
+    AIDiv.textContent = getBotResponse(message);
+    chatBox.appendChild(AIDiv);
+  
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  
+  function getBotResponse(msg) {
+    // Replace with real backend/API logic
+    if (msg.toLowerCase().includes("recommend")) {
+      return "I recommend the Unlimited Plan for $45/month with 25GB of data.";
+    } else if (msg.toLowerCase().includes("change")) {
+      return "Sure, I can help you change your plan. What would you like to switch to?";
+    } else {
+      return "I'm here to help! You can ask about phone plans, pricing, or switching.";
+    }
+  }
+  
+  const inputField = document.getElementById("user_input");
+  inputField.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
