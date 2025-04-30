@@ -1,8 +1,11 @@
 using System.Text;
+
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
 using AgentApiService.Models;
+using AgentApiService.Prompts;
 
 namespace AgentApiService.Services;
 
@@ -29,13 +32,12 @@ public class LLMService
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
             
             List<Message> list = new List<Message>();
-            list.Add(new Message {Role = "system", Content = "begining prompt"});
             return list;
         });
 
         history.Add(new Message { Role = "user", Content = message });
 
-        string prompt = BuildPrompt(history);
+        string prompt = PromptContextBuilder.BuildPrompt(history);
 
         // Simulate OpenAI call
         var llmResult = await FakeOpenAICallAsync(prompt);
@@ -49,15 +51,6 @@ public class LLMService
         return llmResult;
     }
 
-    private string BuildPrompt(List<Message> history)
-    {
-        var sb = new StringBuilder();
-        foreach (var msg in history)
-        {
-            sb.AppendLine($"{msg.Role}: {msg.Content}");
-        }
-        return sb.ToString();
-    }
 
     private async Task<LLMResponse> FakeOpenAICallAsync(string prompt)
     {
@@ -67,7 +60,7 @@ public class LLMService
 
         return new LLMResponse
         {
-            Intent = "query_plan",
+            IsExecutable = true,
             Sql = "SELECT * FROM plan_table WHERE id = 1;",
             Message = "Your current plan is 'Unlimited Everything'."
         };

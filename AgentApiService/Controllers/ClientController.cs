@@ -11,13 +11,18 @@ public class ClientController : ControllerBase
 {
     private readonly ILogger<ClientController> _logger;
     private readonly LLMService _llmService;
+    private readonly ClientService _clientService;
 
-    public ClientController(ILogger<ClientController> logger, LLMService llmService)
+    public ClientController(ILogger<ClientController> logger, LLMService llmService, ClientService clientService)
     {
         _logger = logger;
         _llmService = llmService;
+        _clientService = clientService;
     }
 
+    /**
+    * User → [LLM generates SQL] → [Executes SQL] → [LLM encapsulates resposne to client]
+    **/
     [HttpGet("infoPass")]
     public async Task<string> Get([FromQuery] ClientRequest req)
     {
@@ -27,7 +32,15 @@ public class ClientController : ControllerBase
 
         _logger.LogInformation("Get Response from LLM: " + response);
 
-        // TODO: Apply LLM Response to do biz logic or db execution
-        return "OK";
+        
+        if(response.IsExecutable){
+            // TODO: Apply LLM Response to do  db execution
+            _clientService.ExecuteSQL(response.Sql);
+            _logger.LogInformation("SQL execution result: " + );
+            // TODO: Call LLM to encapsulate response
+            
+        }
+
+        return response.Message;
     }
 }
