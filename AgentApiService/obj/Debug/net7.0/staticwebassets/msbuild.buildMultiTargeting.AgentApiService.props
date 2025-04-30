@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/AgentApiService.props" />
+</Project>
