@@ -32,6 +32,16 @@ function sendMessage() {
       return "I'm here to help! You can ask about phone plans, pricing, or switching.";
     }
   }
+
+  function showInitialAIMessage() {
+    const chatBox = document.getElementById("chat_box");
+    const AIDiv = document.createElement("div");
+    AIDiv.className = "message AI_message";
+    AIDiv.textContent = "Hi! I'm your assistant. How can I help you today?";
+    chatBox.appendChild(AIDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+  
   
   const inputField = document.getElementById("user_input");
   inputField.addEventListener("keypress", function(event) {
@@ -40,3 +50,8 @@ function sendMessage() {
       sendMessage();
     }
   });
+
+  window.onload = function () {
+    showInitialAIMessage();
+  };
+  
