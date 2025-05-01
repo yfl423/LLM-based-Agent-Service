@@ -1,23 +1,29 @@
-using System.Text;
 using AgentApiService.Models;
+using AgentApiService.Prompts;
 
 namespace AgentApiService.Prompts;
 
 public static class PromptContextBuilder
 {
-    public static string BuildPrompt(List<Message> history)
+    public static Message[] BuildPrompt(List<Message> history)
     {
-        var sb = new StringBuilder();
+        var systemContent =
+            PromptTemplates.SystemIntro + "\n\n" +
+            "Schema:\n" + PromptTemplates.TableSchema + "\n\n" +
+            PromptTemplates.ResponseFormatHint + "\n\n" +
+            PromptTemplates.AdditionalRules;
 
-        sb.AppendLine($"System: {PromptTemplates.SystemIntro}");
-        sb.AppendLine($"Schema Info: {PromptTemplates.TableSchema}");
-        sb.AppendLine();
+        var messages = new List<Message>();
 
-        foreach (var message in history)
+        
+        messages.Add(new Message
         {
-            sb.AppendLine($"{message.Role}: {message.Content}");
-        }
+            Role = "system",
+            Content = systemContent
+        });
 
-        return sb.ToString();
+        messages.AddRange(history);
+
+        return messages.ToArray();
     }
 }
