@@ -34,6 +34,28 @@ public class ClientController : ControllerBase
 
         
         if(response.IsExecutable){
+            // TODO: Apply LLM Response to do  db execution
+
+            //_clientService.ExecuteSQL(response.Sql);
+            //_logger.LogInformation("SQL execution result: " + _clientService.ExecuteSQL(response.Sql));
+            // TODO: Call LLM to encapsulate response
+            // try
+            //     {
+            //         var sqlResult = _clientService.ExecuteSQL(response.Sql);
+            //         _logger.LogInformation("SQL execution result: " + sqlResult);
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         _logger.LogError(ex, "SQL execution failed.");
+            //         return "Error executing SQL: " + ex.Message;
+            //     }
+            
+
+            // _clientService.ExecuteSQL(response.Sql);
+            _logger.LogInformation("SQL execution result: ");
+            // TODO: Call LLM to encapsulate response
+            return "response.Sql";
+
             // Apply LLM Response to do  db execution
             string res = await _clientService.ExecuteSQL(response.Sql);
             
