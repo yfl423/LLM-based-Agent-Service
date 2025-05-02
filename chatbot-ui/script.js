@@ -17,7 +17,7 @@ function sendMessage() {
   // AIDiv.textContent = getBotResponse(message);
   // chatBox.appendChild(AIDiv);
 
-  // input.value = "";
+  input.value = "";
   // chatBox.scrollTop = chatBox.scrollHeight;
   // Call backend API
   fetch(`http://localhost:5120/api/client/infoPass?sessionID=test-session&message=${encodeURIComponent(message)}`)

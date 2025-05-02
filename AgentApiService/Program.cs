@@ -5,6 +5,18 @@ using AgentApiService.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Allow Cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevOpen", policy =>
+        policy
+            .WithOrigins("http://127.0.0.1:5500") 
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()); 
+});
+
+
 // Bind configuration
 builder.Services.Configure<OpenAIOptions>(
     builder.Configuration.GetSection("OpenAI"));
@@ -30,6 +42,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseCors("DevOpen");
 
 app.UseHttpsRedirection();
 
