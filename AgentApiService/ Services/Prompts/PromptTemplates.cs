@@ -20,7 +20,13 @@ public static class PromptTemplates
         
 
     public static readonly string SampleQuery =
-        @"Example: 'What is the cheapest plan?' → SELECT TOP 1 * FROM plan_table WHERE is_active = 1 ORDER BY price ASC;";
+        @"You must use T-SQL syntax compatible with Microsoft SQL Server.
+
+        For example:
+        - Use `SELECT TOP 1 ...` instead of `LIMIT 1`
+        - Use `GETDATE()` instead of `NOW()`
+        - Use `+` for string concatenation instead of `CONCAT()`
+        ";
 
     
     public static readonly string ResponseFormatHint = 
@@ -38,7 +44,10 @@ public static class PromptTemplates
 
     public static readonly string AdditionalRules =
         @"
-        1. When user case is querying his/her current plan, we need do authenication by asking
+        1. Only if user case is querying his/her personal information (eg. his current plan), we need do authenication by asking
         client provides phone number, and full name, and date of birth. If user omits any of phone number, full name, or date of birth, do not generate SQL. Instead, ask the user to provide the missing fields.
+        For general plan query, no authenication needed.
         ";
+    
+    public static readonly string SQLResultHint = "The user has already executed the SQL you previously generated. Now your job is to describe the results in friendly, this is the execution result of the SQL you returned: ";
 }

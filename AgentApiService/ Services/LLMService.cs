@@ -27,7 +27,7 @@ public class LLMService
         _httpClient = new HttpClient();
     }
 
-    public async Task<LLMResponse> ProcessMessageAsync(string sessionId, string message)
+    public async Task<LLMResponse> ProcessMessageAsync(string sessionId, string message, bool isSQLResult)
     {
         var sessionKey = $"session:{sessionId}";
 
@@ -36,18 +36,16 @@ public class LLMService
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
             
-            List<Message> list = new List<Message>();
-            return list;
+            return PromptContextBuilder.InitializePrompt();
         });
 
-        history.Add(new Message { Role = "user", Content = message });
-
-        Message[] prompt = PromptContextBuilder.BuildPrompt(history);
+        Message[] prompt = PromptContextBuilder.AppendPrompt(history,message, isSQLResult).ToArray();
 
        _logger.LogInformation("SessionId: {SessionId}, Prompt:\n{Prompt}", sessionId, string.Join("\n", prompt.Select(m => m.ToString())));
 
         // OpenAI call
-        var llmResult = await CallOpenAIApiAsync(prompt);
+        LLMResponse llmResult = await CallOpenAIApiAsync(prompt);
+
 
         // Add assistant response to history
         history.Add(new Message { Role = "assistant", Content = llmResult.Message });

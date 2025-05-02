@@ -1,6 +1,7 @@
 
 using AgentApiService.Models;
 using AgentApiService.Services;
+using AgentApiService.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,8 @@ builder.Services.Configure<OpenAIOptions>(
 // Add service components 
 builder.Services.AddMemoryCache();       
 builder.Services.AddSingleton<LLMService>(); 
-
+builder.Services.AddSingleton<ClientRepository>();
+builder.Services.AddSingleton<ClientService>();
 
 // Add controller components.
 
