@@ -19,6 +19,6 @@ TestResults/
 *.log
 
 # Ignore local settings and secrets
-appsettings.Development.json
-appsettings.json
+AgentApiService/appsettings.Development.json
+AgentApiService/appsettings.json
 secrets.json
