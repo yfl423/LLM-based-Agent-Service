@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgentApiService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a00b22a497843b095ea001d9fa35efc8c2de434b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+708c077137bc03084dae35d50a15b21cfe7d2123")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgentApiService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgentApiService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
