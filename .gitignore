@@ -1,0 +1,23 @@
+# Ignore build outputs inside AgentApiService
+AgentApiService/bin/
+AgentApiService/obj/
+
+# Ignore compiled files
+*.dll
+*.pdb
+*.cache
+
+# Ignore IDE configs and system files
+.vscode/
+.idea/
+*.suo
+*.user
+.DS_Store
+
+# Optional: ignore test results and debug logs
+TestResults/
+*.log
+
+# Ignore local settings and secrets
+appsettings.Development.json
+secrets.json
