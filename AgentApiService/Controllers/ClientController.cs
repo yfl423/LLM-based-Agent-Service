@@ -11,13 +11,13 @@ public class ClientController : ControllerBase
 {
     private readonly ILogger<ClientController> _logger;
     private readonly LLMService _llmService;
-    private readonly ClientService _clientService;
+    // private readonly ClientService _clientService;
 
-    public ClientController(ILogger<ClientController> logger, LLMService llmService, ClientService clientService)
+    public ClientController(ILogger<ClientController> logger, LLMService llmService)
     {
         _logger = logger;
         _llmService = llmService;
-        _clientService = clientService;
+        // _clientService = clientService;
     }
 
     /**
@@ -35,8 +35,9 @@ public class ClientController : ControllerBase
         
         if(response.IsExecutable){
             // TODO: Apply LLM Response to do  db execution
-            _clientService.ExecuteSQL(response.Sql);
-            _logger.LogInformation("SQL execution result: " + _clientService.ExecuteSQL(response.Sql));
+
+            //_clientService.ExecuteSQL(response.Sql);
+            //_logger.LogInformation("SQL execution result: " + _clientService.ExecuteSQL(response.Sql));
             // TODO: Call LLM to encapsulate response
             // try
             //     {
@@ -49,6 +50,12 @@ public class ClientController : ControllerBase
             //         return "Error executing SQL: " + ex.Message;
             //     }
             
+
+            // _clientService.ExecuteSQL(response.Sql);
+            _logger.LogInformation("SQL execution result: ");
+            // TODO: Call LLM to encapsulate response
+            return "response.Sql";
+
         }
 
         return response.Message;

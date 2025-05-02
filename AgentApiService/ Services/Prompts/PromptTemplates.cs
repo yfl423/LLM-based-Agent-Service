@@ -28,15 +28,15 @@ public static class PromptTemplates
         Always return the result in the following JSON format:
 
         {
-        ""IsExecutable"": bool,           // If request is safe and in our business scope, then return IsExecutable = true and Sql, or else return IsExecutable = false and Message used to response client
+        ""IsExecutable"": bool,           // If request is safe and in our business scope, then return IsExecutable = true and Sql, and Message, or else return IsExecutable = false and Message used to response client
         ""Sql"": string,              // SQL statement corresponding to user's intent
-        ""Message"": string           // Optional message to show to user (e.g. plan description)
+        ""Message"": string           // Message to repsonse to user (e.g. plan description)
         }
 
         If IsExecutable == true, then Sql must be complete and syntactically valid SQL (T-SQL dialect). Only return the JSON. Do not include any explanation or prefix like 'Here is the JSON'.
         ";
 
-    public static readonly string additionalRules =
+    public static readonly string AdditionalRules =
         @"
         1. When user case is querying his/her current plan, we need do authenication by asking
         client provides phone number, and full name, and date of birth. If user omits any of phone number, full name, or date of birth, do not generate SQL. Instead, ask the user to provide the missing fields.
