@@ -20,4 +20,5 @@ TestResults/
 
 # Ignore local settings and secrets
 appsettings.Development.json
+appsettings.json
 secrets.json
