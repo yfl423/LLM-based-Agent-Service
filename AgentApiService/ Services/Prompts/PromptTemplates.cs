@@ -31,7 +31,7 @@ public static class PromptTemplates
     
     public static readonly string ResponseFormatHint = 
         @"
-        Always return the result in the following JSON format:
+        Return every result in the following JSON format, even if asks you describe SQL results:
 
         {
         ""IsExecutable"": bool,           // If request is safe and in our business scope, then return IsExecutable = true and Sql, and Message, or else return IsExecutable = false and Message used to response client
@@ -49,5 +49,9 @@ public static class PromptTemplates
         For general plan query, no authenication needed.
         ";
     
-    public static readonly string SQLResultHint = "The user has already executed the SQL you previously generated. Now your job is to describe the results in friendly, this is the execution result of the SQL you returned: ";
+    public static readonly string SQLResultHint = 
+        @"
+        The user has already executed the SQL you previously generated. 
+        Now your job is to describe the results in friendly, you still need follow the JSON format, you can set IsExecutable is false, so no Sql needed, and put repsonse into Message.
+        This is the execution result of the SQL you returned: ";
 }

@@ -84,10 +84,17 @@ public class LLMService
             .GetString();
 
         // Deserialize content to LLMResponse
-        var llmResponse = JsonSerializer.Deserialize<LLMResponse>(contentText!, new JsonSerializerOptions
+        LLMResponse llmResponse;
+        
+        try
         {
-            PropertyNameCaseInsensitive = true
-        });
+            llmResponse = JsonSerializer.Deserialize<LLMResponse>(contentText!, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+        }catch(Exception e){
+            llmResponse = new LLMResponse(false, "", contentText);
+        }
 
         return llmResponse!;
         

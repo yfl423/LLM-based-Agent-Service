@@ -52,9 +52,6 @@ public class ClientController : ControllerBase
             
 
             // _clientService.ExecuteSQL(response.Sql);
-            _logger.LogInformation("SQL execution result: ");
-            // TODO: Call LLM to encapsulate response
-            return "response.Sql";
 
             // Apply LLM Response to do  db execution
             string res = await _clientService.ExecuteSQL(response.Sql);

@@ -8,6 +8,14 @@ public class LLMResponse
     public string? Sql { get; set; } // Return applicable SQL
     public string? Message { get; set; } // Generate extra repsonse info to client
 
+
+    public LLMResponse(bool isExecutable, string sql, string message)
+    {
+        this.IsExecutable = isExecutable;
+        this.Sql = sql;
+        this.Message = message;
+    }
+
     public override string ToString()
     {
         return System.Text.Json.JsonSerializer.Serialize(this, new JsonSerializerOptions
