@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "sKtZecl2BPqlZxeb+/49SPewq6zy/Iz5zaPjeykHtQw=",
+  "Hash": "8P3FbbGKT0kZdmOIK3q9/pm/g/Dc4N0rcEfApCVIASw=",
   "Source": "AgentApiService",
   "BasePath": "_content/AgentApiService",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

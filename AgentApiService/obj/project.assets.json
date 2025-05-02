@@ -460,19 +460,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/fenglongyang/.nuget/packages/": {}
+    "C:\\Users\\chang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/fenglongyang/Desktop/git/LLM-based-Agent-Service/AgentApiService/AgentApiService.csproj",
+      "projectUniqueName": "C:\\hui\\UTD\\NLP\\project\\LLM-based-Agent-Service\\AgentApiService\\AgentApiService.csproj",
       "projectName": "AgentApiService",
-      "projectPath": "/Users/fenglongyang/Desktop/git/LLM-based-Agent-Service/AgentApiService/AgentApiService.csproj",
-      "packagesPath": "/Users/fenglongyang/.nuget/packages/",
-      "outputPath": "/Users/fenglongyang/Desktop/git/LLM-based-Agent-Service/AgentApiService/obj/",
+      "projectPath": "C:\\hui\\UTD\\NLP\\project\\LLM-based-Agent-Service\\AgentApiService\\AgentApiService.csproj",
+      "packagesPath": "C:\\Users\\chang\\.nuget\\packages\\",
+      "outputPath": "C:\\hui\\UTD\\NLP\\project\\LLM-based-Agent-Service\\AgentApiService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/fenglongyang/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\chang\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -490,7 +490,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net7.0": {
@@ -524,7 +530,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

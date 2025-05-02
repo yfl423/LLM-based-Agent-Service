@@ -1,24 +1,42 @@
 function sendMessage() {
-    const input = document.getElementById("user_input");
-    const chatBox = document.getElementById("chat_box");
-    const message = input.value.trim();
-  
-    if (message === "") return;
-  
-    // User message
-    const userDiv = document.createElement("div");
-    userDiv.className = "message user_message";
-    userDiv.textContent = message;
-    chatBox.appendChild(userDiv);
-  
-    // AI response 
-    const AIDiv = document.createElement("div");
-    AIDiv.className = "message AI_message";
-    AIDiv.textContent = getBotResponse(message);
-    chatBox.appendChild(AIDiv);
-  
-    input.value = "";
-    chatBox.scrollTop = chatBox.scrollHeight;
+  const input = document.getElementById("user_input");
+  const chatBox = document.getElementById("chat_box");
+  const message = input.value.trim();
+
+  if (message === "") return;
+
+  // User message
+  const userDiv = document.createElement("div");
+  userDiv.className = "message user_message";
+  userDiv.textContent = message;
+  chatBox.appendChild(userDiv);
+
+  // AI response 
+  // const AIDiv = document.createElement("div");
+  // AIDiv.className = "message AI_message";
+  // AIDiv.textContent = getBotResponse(message);
+  // chatBox.appendChild(AIDiv);
+
+  // input.value = "";
+  // chatBox.scrollTop = chatBox.scrollHeight;
+  // Call backend API
+  fetch(`http://localhost:5120/api/client/infoPass?sessionID=test-session&message=${encodeURIComponent(message)}`)
+    .then(response => response.text())
+    .then(botReply => {
+      const AIDiv = document.createElement("div");
+      AIDiv.className = "message AI_message";
+      AIDiv.textContent = botReply;
+      chatBox.appendChild(AIDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+  })
+    .catch(error => {
+      console.error("API call failed:", error);
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "message AI_message";
+      errorDiv.textContent = "Sorry, something went wrong.";
+      chatBox.appendChild(errorDiv);
+  });
+
   }
 
   

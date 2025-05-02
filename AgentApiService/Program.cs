@@ -10,8 +10,9 @@ builder.Services.Configure<OpenAIOptions>(
 
 // Add service components 
 builder.Services.AddMemoryCache();       
-builder.Services.AddSingleton<LLMService>(); 
-
+//builder.Services.AddSingleton<LLMService>(); 
+builder.Services.AddScoped<LLMService>();
+builder.Services.AddScoped<ClientService>();
 
 // Add controller components.
 
