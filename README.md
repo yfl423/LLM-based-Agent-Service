@@ -89,6 +89,9 @@ curl "http://localhost:5120/api/client/infoPass?sessionID=test&message=What%20is
 ```
 Or in chat UI: “What’s the cheapest unlimited plan?”
 
+## Demo Video
+<https://youtu.be/soAnLER0mqc>
+
 
 
 
